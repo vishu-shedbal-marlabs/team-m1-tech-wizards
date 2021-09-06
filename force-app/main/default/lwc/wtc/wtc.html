@@ -1,0 +1,55 @@
+<template>
+    <form action="https://hfs--m1tecwzrds.my.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" method="POST">
+
+        <input type=hidden name="orgid" value="00D0T0000008kpo">
+        <input type=hidden name="retURL" value="https://m1tecwzrds-hfs.cs112.force.com/solarpanelservice/s/connect-shortly">
+        
+        <!--  ----------------------------------------------------------------------  -->
+        <!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
+        <!--  these lines if you wish to test in debug mode.                          -->
+        <!--  <input type="hidden" name="debug" value=1>                              -->
+        <!--  <input type="hidden" name="debugEmail"                                  -->
+        <!--  value="mainak.sarkar@marlabs.com">                                      -->
+        <!--  ----------------------------------------------------------------------  -->
+        
+        <label for="name">Contact Name</label><input  id="name" maxlength="80" name="name" size="20" type="text" /><br>
+        
+        <label for="email">Email</label><input  id="email" maxlength="80" name="email" size="20" type="text" /><br>
+        
+        <label for="phone">Phone</label><input  id="phone" maxlength="40" name="phone" size="20" type="text" /><br>
+        
+        <label for="subject">Subject</label><input  id="subject" maxlength="80" name="subject" size="20" type="text" /><br>
+        
+        Product Interest:<select  id="00N0T000005t0ht" name="00N0T000005t0ht" title="Product Interest"><option value="">--None--</option><option value="Monocrystalline">Monocrystalline</option>
+            <option value="Polycrystalline">Polycrystalline</option>
+            <option value="Thin-film solar panels">Thin-film solar panels</option>
+            </select><br>
+        
+        Location:<select  id="00N0T000005t0hy" name="00N0T000005t0hy" title="Location"><option value="">--None--</option><option value="North">North</option>
+                <option value="South">South</option>
+                <option value="East">East</option>
+                <option value="West">West</option>
+                </select><br>
+        
+        <label for="description">Description</label><textarea name="description"></textarea><br>
+        
+        <label for="type">Type</label><select  id="type" name="type"><option value="">--None--</option><option value="Problem">Problem</option>
+        <option value="Feature Request">Feature Request</option>
+        <option value="Question">Question</option>
+        <option value="Product Specifications">Product Specifications</option>
+        <option value="Shipping">Shipping</option>
+        <option value="Warranty">Warranty</option>
+        </select><br>
+        
+        <label for="priority">Priority</label><select  id="priority" name="priority"><option value="">--None--</option><option value="High">High</option>
+        <option value="Medium">Medium</option>
+        <option value="Low">Low</option>
+        </select><br>
+        
+        <input type="hidden"  id="external" name="external" value="1" /><br>
+        
+        <button type="submit" name="submit">SUBMIT</button>
+        
+        </form>
+        
+</template>
