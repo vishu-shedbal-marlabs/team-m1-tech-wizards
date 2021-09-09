@@ -24,30 +24,30 @@
     
      
     
-    <label for="first_name">First Name</label><input  id="first_name" maxlength="40" name="first_name" size="20" type="text" /><br>
+    <label for="first_name">First Name</label><input  id="first_name" maxlength="40" name="first_name" size="20" type="text" required/><br>
     
      
     
-    <label for="last_name">Last Name</label><input  id="last_name" maxlength="80" name="last_name" size="20" type="text" /><br>
+    <label for="last_name">Last Name</label><input  id="last_name" maxlength="80" name="last_name" size="20" type="text" required/><br>
     
      
     
-    <label for="email">Email</label><input  id="email" maxlength="80" name="email" size="20" type="text" /><br>
+    <label for="email">Email</label><input  id="email" maxlength="80" name="email" size="20" type="email" required /><br>
+    
+    <label for="phone">Phone</label><input  id="phone" maxlength="10" name="phone" size="20" type="tel" required pattern="[789][0-9]{9}"/><br>
+    
+    <label for="company">Company</label><input  id="company" maxlength="40" name="company" size="20" type="text" required /><br>
     
      
     
-    <label for="company">Company</label><input  id="company" maxlength="40" name="company" size="20" type="text" /><br>
-    
-     
-    
-    Product Interest:<select  id="00N0T000005t0ht" name="00N0T000005t0ht" title="Product Interest"><option value="">--None--</option><option value="Monocrystalline">Monocrystalline</option>
+    Product Interest:<select  id="00N0T000005t0ht" name="00N0T000005t0ht" title="Product Interest" required><option value="">--None--</option><option value="Monocrystalline">Monocrystalline</option>
     <option value="Polycrystalline">Polycrystalline</option>
     <option value="Thin-film solar panels">Thin-film solar panels</option>
     </select><br>
     
      
     
-    Location:<select  id="00N0T000005t0hy" name="00N0T000005t0hy" title="Location"><option value="">--None--</option><option value="North">North</option>
+    Location:<select  id="00N0T000005t0hy" name="00N0T000005t0hy" title="Location" required><option value="">--None--</option><option value="North">North</option>
     <option value="South">South</option>
     <option value="East">East</option>
     <option value="West">West</option>
