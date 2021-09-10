@@ -29,8 +29,9 @@
             <tr>
                 <td>
                     <div class="slds-m-around_medium">
-                            <h3><b>Related Contacts to this Account</b></h3>
-                            <table >
+                            <u><h2><b>Related Contacts Information to this Account</b></h2></u>
+                            <br>
+                            <table class="table1">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
@@ -57,8 +58,9 @@
                 <td>
                     <div class="slds-m-around_medium">
                         
-                            <h3><b>Related Opportunity to this Account</b></h3>
-                            <table >
+                            <u><h2><b>Related Opportunity Information to this Account</b></h2></u>
+                            <br>
+                            <table class="table1">
                                 <thead>
                                     <tr>
                                         <th>Opportunity Name</th>
@@ -84,11 +86,12 @@
                 <td>
                     <div class="slds-m-around_medium">
                         
-                            <h3><b>No of opportunites:</b></h3>
-                            <table >
+                            <u><h2><b>Number of Opportunites Information</b></h2></u>
+                            <br>
+                            <table class="table1">
                                 <thead>
                                     <tr>
-                                        <th>Closed Won</th>
+                                        <th>Closed Won :</th>
                                     </tr>
                                 </thead>
                                 <template for:each ={closedwonofopp} for:item="item">
@@ -98,19 +101,11 @@
                                         </td>
                                     </tr>
                                 </template>
-                            </table>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="slds-m-around_medium">
-                        
-                            <h3><b>No of opportunites:</b></h3>
-                            <table >
+                            </table><br>
+                            <table class="table1">
                                 <thead>
                                     <tr>
-                                        <th>Closed Lost</th>
+                                        <th>Closed Lost :</th>
                                     </tr>
                                 </thead>
                                 <template for:each ={closedlostopp} for:item="item">
@@ -121,6 +116,7 @@
                                     </tr>
                                 </template>
                             </table>
+                            <br>
                     </div>
                 </td>
             </tr>
@@ -128,16 +124,21 @@
                 <td>
                     <div class="slds-m-around_medium">
                         
-                            <h3><b>No of opportunites:</b></h3>
-                            <table >
+                            <u><h2><b>Related Amount Information to this Account</b></h2></u>
+                            <br>
+                            <table class="table1">
                                 <thead>
                                     <tr>
-                                    
-                                        <th>Amount</th>
+                                        <th>Name :</th>
+                                        <th>Amount :</th>
                                     </tr>
                                 </thead>
-                                <template for:each ={amountClosedWonOpp} for:item="item">
+                                <template for:each ={oppamount} for:item="item">
                                     <tr key={item.Id}>
+                                        <td>
+                                            {item.Name}
+                                        </td>
+                                        
                                         <td>
                                             {item.Amount}
                                         </td>
@@ -151,12 +152,13 @@
                 <td>
                     <div class="slds-m-around_medium">
                         
-                            <h3><b>Related Case to this Account</b></h3>
-                            <table >
+                            <u><h2><b>Related Case Information to this Account</b></h2></u>
+                            <br>
+                            <table class="table1">
                                 <thead>
                                     <tr>
-                                        <th>Case Number</th>
-                                        <th>Email</th>
+                                        <th>Case Number :</th>
+                                        <th>Status :</th>
                                     </tr>
                                 </thead>
                                 <template for:each ={cs} for:item="item">
@@ -174,8 +176,48 @@
                     </div>
                 </td>
             </tr>
-
-           
+            <tr>
+                <td>
+                    <div class="slds-m-around_medium">
+                        
+                            <u><h2><b>Number of Cases Information</b></h2></u>
+                            <br>
+                            <table class="table1">
+                                
+                                    <tr>
+                                        <th>Number of Closed Cases :</th>
+                                    </tr>
+                                
+                                <template for:each ={noclosedcase} for:item="item">
+                                    <tr key={item.Id}>
+                                        <td>
+                                            {item.CaseNumber}
+                                        </td>
+                                    </tr>
+                                </template>
+                            </table>
+                            <br>
+                            <table class="table1">
+                                
+                                    <tr>
+                                        <th>Number of Open Cases :</th>
+                                        
+                                    </tr>
+                                
+                                <template for:each ={noopencase} for:item="item">
+                                    <tr key={item.Id}>
+                                        <td>
+                                            {item.CaseNumber}
+                                        </td>
+                                        
+                                        
+                                    </tr>
+                                </template>
+                            </table>
+                            <br>
+                    </div>
+                </td>
+            </tr>
         </table>
     </lightning-card>
 </template>

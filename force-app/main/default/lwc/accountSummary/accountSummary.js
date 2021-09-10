@@ -6,7 +6,8 @@ import getClosedWonOpp from '@salesforce/apex/AccountRelatedObj.getClosedWonOpp'
 import getClosedLostOpp from '@salesforce/apex/AccountRelatedObj.getClosedLostOpp';
 import getAmountClosedWonOpp from  '@salesforce/apex/AccountRelatedObj.getAmountClosedWonOpp';
 import fetchCase from  '@salesforce/apex/AccountRelatedObj.fetchCase';
-
+import getOpenCase from  '@salesforce/apex/AccountRelatedObj.getOpenCase'; 
+import getClosedCase from  '@salesforce/apex/AccountRelatedObj.getClosedCase'; 
 
 export default class AccountSummary extends LightningElement {
    
@@ -18,12 +19,19 @@ export default class AccountSummary extends LightningElement {
     msg2;
     msg3;
     msg4;
+    msg5;
+    msg6;
+    mesg1;
+    mesg2;
+    mesg3;
     @track opp;
     @track closedwonofopp;
     @track closedlostopp;
-    @track amountClosedWonOpp;
+    @track oppamount;
     @track cs;
     @track case;
+    @track noopencase;
+    @track noclosecase;
     connectedCallback(){
                         fetchAccount()
                         .then(result => {
@@ -91,18 +99,18 @@ export default class AccountSummary extends LightningElement {
                                             this.error = error;
 
                                             })
-                                            this.msg3 = event.target.value;
-                                            console.log('Opportunity Id-->'+this.msg3);
-                                            getAmountClosedWonOpp({accountId : this.msg3})
+                                            this.mesg1 = event.target.value;
+                                            console.log('Amountopp Id-->'+this.mesg1);
+                                            getAmountClosedWonOpp({accountId : this.mesg1})
                                             .then(result => {
-                                                              this.amountClosedWonOppp = result;
-                
+                                                              this.oppamount = result;
+                                
                                                               console.log(JSON.stringify(result));
-                                                              console.log("result5",this.amountClosedWonOpp);
+                                                              console.log("result4",this.oppamount);
                                                             })
                                             .catch(error =>{
                                                             this.error = error;
-                
+                                
                                                             })
                                             this.msg = event.target.value;
                                             console.log('Case Id-->'+this.msg);
@@ -117,5 +125,31 @@ export default class AccountSummary extends LightningElement {
                                                             this.error = error;
                     
                                                             })
+                                                            this.mesg2 = event.target.value;
+                                                            console.log('Case Id-->'+this.mesg2);
+                                                            getClosedCase({accountId : this.mesg2})
+                                                            .then(result => {
+                                                                              this.noclosedcase = result;
+                                                                
+                                                                              console.log(JSON.stringify(result));
+                                                                              console.log("result5",this.noclosedcase);
+                                                                            })
+                                                            .catch(error =>{
+                                                                            this.error = error;
+                                                                
+                                                                            })
+                                                            this.mesg3 = event.target.value;
+                                                            console.log('Case Id-->'+this.mesg3);
+                                                            getOpenCase({accountId : this.mesg3})
+                                                            .then(result => {
+                                                                              this.noopencase = result;
+                                                                                
+                                                                              console.log(JSON.stringify(result));
+                                                                              console.log("result6",this.noopencase);
+                                                                            })
+                                                            .catch(error =>{
+                                                                            this.error = error;
+                                                                                
+                                                                            })
                                         }
 }

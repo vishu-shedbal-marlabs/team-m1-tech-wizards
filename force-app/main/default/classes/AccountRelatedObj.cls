@@ -35,8 +35,8 @@ public class AccountRelatedObj {
     @auraEnabled
     public static List<Opportunity> getAmountClosedWonOpp(String accountId)
     {
-        List<Opportunity> oppList3=[SELECT Id,Amount,AccountId FROM Opportunity where StageName='Closed Won' and accountId=:accountId ];
-        return oppList3;
+         List<Opportunity> oppamount=[SELECT Name, Amount, AccountId From Opportunity where StageName='Closed Won' and accountId=:accountId];
+       return oppamount;
         //[SELECT COUNT(Id) Name, COUNT(StageName) From Opportunity where StageName='Closed Won' and accountId=:accountId];
     }
     @auraEnabled
@@ -44,6 +44,20 @@ public class AccountRelatedObj {
     {
         List<Case> csList=[SELECT Id,CaseNumber,Status, AccountId FROM Case WHERE AccountId=:accountId ];
         return csList;
+    }
+     @auraEnabled
+    public static List<AggregateResult> getClosedCase(String accountId)
+    {
+        List<AggregateResult> oppList3=[SELECT COUNT(Id) CaseNumber, COUNT(Status) From Case where Status='Closed' and accountId=:accountId ];
+        return oppList3;
+        //[SELECT COUNT(Id) Name, COUNT(StageName) From Opportunity where StageName='Closed Won' and accountId=:accountId];
+    }
+    @auraEnabled
+    public static List<AggregateResult> getOpenCase(String accountId)
+    {
+        List<AggregateResult> oppList4=[SELECT COUNT(Id) CaseNumber, COUNT(Status) From Case where Status='New' and accountId=:accountId ];
+        return oppList4;
+        //[SELECT COUNT(Id) Name, COUNT(StageName) From Opportunity where StageName='Closed Won' and accountId=:accountId];
     }        
 }
 
