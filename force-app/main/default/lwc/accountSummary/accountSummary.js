@@ -7,23 +7,19 @@ import getClosedLostOpp from '@salesforce/apex/AccountRelatedObj.getClosedLostOp
 import getAmountClosedWonOpp from  '@salesforce/apex/AccountRelatedObj.getAmountClosedWonOpp';
 import fetchCase from  '@salesforce/apex/AccountRelatedObj.fetchCase';
 import getOpenCase from  '@salesforce/apex/AccountRelatedObj.getOpenCase'; 
-import getClosedCase from  '@salesforce/apex/AccountRelatedObj.getClosedCase'; 
+import getClosedCase from  '@salesforce/apex/AccountRelatedObj.getClosedCase';
+import ID_FIELD from '@salesforce/schema/Account.Id';
+import Financial_Year from '@salesforce/schema/Account.Financial_Year__c';
+import Full_Year_Target_Revenue from '@salesforce/schema/Account.Full_Year_Target_Revenue__c';
+import Campaign_Budget from '@salesforce/schema/Account.Campaign_Budget__c';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { updateRecord } from 'lightning/uiRecordApi'; 
 
 export default class AccountSummary extends LightningElement {
    
     @track acc;
     @track con;
-    message;
     msg;
-    msg1;
-    msg2;
-    msg3;
-    msg4;
-    msg5;
-    msg6;
-    mesg1;
-    mesg2;
-    mesg3;
     @track opp;
     @track closedwonofopp;
     @track closedlostopp;
@@ -32,6 +28,29 @@ export default class AccountSummary extends LightningElement {
     @track case;
     @track noopencase;
     @track noclosecase;
+    updateAccount(){
+      const fields = {};
+      fields[ID_FIELD.fieldApiName] = this.msg;
+      fields[Financial_Year.fieldApiName] = this.template.querySelector("[data-field='Financial_Year__c']").value;
+      fields[Full_Year_Target_Revenue.fieldApiName] = this.template.querySelector("[data-field='Full_Year_Target_Revenue__c']").value;
+      fields[Campaign_Budget.fieldApiName] = this.template.querySelector("[data-field='Campaign_Budget__c']").value;
+      console.log(fields);
+
+      const recordInput = { fields };
+      updateRecord(recordInput)
+      .then(() => {
+          this.dispatchEvent(
+              new ShowToastEvent({
+                  title: 'Account Updated Succesfully',
+                  message: 'go to accounts to see the update',
+                  variant: 'success'
+              })
+          );
+      })
+      .catch(error => {
+          console.log(error);
+      });
+  }
     connectedCallback(){
                         fetchAccount()
                         .then(result => {
@@ -45,9 +64,9 @@ export default class AccountSummary extends LightningElement {
 
     
     contactFetch(event){
-                            this.message = event.target.value;
-                            console.log('Contact Id-->'+this.message);
-                            fetchContact({accountId : this.message})
+                            this.msg = event.target.value;
+                            console.log('Contact Id-->'+this.msg);
+                            fetchContact({accountId : this.msg})
 
                             .then(result => {
                                                 this.con = result;
@@ -73,9 +92,9 @@ export default class AccountSummary extends LightningElement {
                                             this.error = error;
 
                                             })
-                            this.msg1 = event.target.value;
-                            console.log('Opportunity Id-->'+this.msg1);
-                            getClosedWonOpp({accountId : this.msg1})
+                            this.msg = event.target.value;
+                            console.log('Opportunity Id-->'+this.msg);
+                            getClosedWonOpp({accountId : this.msg})
                             .then(result => {
                                               this.closedwonofopp = result;
 
@@ -86,9 +105,9 @@ export default class AccountSummary extends LightningElement {
                                             this.error = error;
 
                                             })
-                            this.msg2 = event.target.value;
-                            console.log('Opportunity Id-->'+this.msg2);
-                            getClosedLostOpp({accountId : this.msg2})
+                            this.msg = event.target.value;
+                            console.log('Opportunity Id-->'+this.msg);
+                            getClosedLostOpp({accountId : this.msg})
                             .then(result => {
                                               this.closedlostopp = result;
 
@@ -99,9 +118,9 @@ export default class AccountSummary extends LightningElement {
                                             this.error = error;
 
                                             })
-                                            this.mesg1 = event.target.value;
-                                            console.log('Amountopp Id-->'+this.mesg1);
-                                            getAmountClosedWonOpp({accountId : this.mesg1})
+                                            this.msg = event.target.value;
+                                            console.log('Amountopp Id-->'+this.msg);
+                                            getAmountClosedWonOpp({accountId : this.msg})
                                             .then(result => {
                                                               this.oppamount = result;
                                 
@@ -125,9 +144,9 @@ export default class AccountSummary extends LightningElement {
                                                             this.error = error;
                     
                                                             })
-                                                            this.mesg2 = event.target.value;
-                                                            console.log('Case Id-->'+this.mesg2);
-                                                            getClosedCase({accountId : this.mesg2})
+                                                            this.msg = event.target.value;
+                                                            console.log('Case Id-->'+this.msg);
+                                                            getClosedCase({accountId : this.msg})
                                                             .then(result => {
                                                                               this.noclosedcase = result;
                                                                 
@@ -138,9 +157,9 @@ export default class AccountSummary extends LightningElement {
                                                                             this.error = error;
                                                                 
                                                                             })
-                                                            this.mesg3 = event.target.value;
-                                                            console.log('Case Id-->'+this.mesg3);
-                                                            getOpenCase({accountId : this.mesg3})
+                                                            this.msg = event.target.value;
+                                                            console.log('Case Id-->'+this.msg);
+                                                            getOpenCase({accountId : this.msg})
                                                             .then(result => {
                                                                               this.noopencase = result;
                                                                                 
